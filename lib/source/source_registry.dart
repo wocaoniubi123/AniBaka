@@ -149,6 +149,13 @@ class AdapterRegistry {
       color: const Color(0xFF7E57C2),
       factory: () => _createBundledRuleAdapter('silisili'),
     ),
+    AdapterDescriptor(
+      key: 'youzidj',
+      displayName: '柚子短剧',
+      icon: Icons.local_movies_rounded,
+      color: const Color(0xFFE05C89),
+      factory: () => _createBundledRuleAdapter('youzidj'),
+    ),
   ];
 
   static final Map<String, AdapterDescriptor> _builtinSourceMap = {

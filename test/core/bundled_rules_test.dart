@@ -7,6 +7,7 @@ import 'package:test/test.dart';
 import 'package:baka/models/custom_source_config.dart';
 import 'package:baka/services/source/source_codec.dart';
 import 'package:baka/source/engine/rule_validator.dart';
+import 'package:baka/source/source_registry.dart';
 import 'package:baka/source/store/bundled_rule_store.dart';
 
 void main() {
@@ -48,6 +49,16 @@ void main() {
         reason: '$name invalid: ${validation.errors.join('; ')}',
       );
     }
+  });
+
+  test('registry descriptors cover every bundled rule asset', () {
+    expect(
+      AdapterRegistry.builtinSources.map((source) => source.key).toSet(),
+      BundledRuleStore.builtinAssets.keys.toSet(),
+      reason:
+          'every bundled rule needs an AdapterRegistry descriptor or it '
+          'never shows up in the app',
+    );
   });
 
   test('bundled revisions identify the exact shipped rule contents', () {
