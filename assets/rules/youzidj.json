@@ -4,7 +4,7 @@
   "name": "柚子短剧",
   "baseUrl": "https://youzidj.com",
   "iconUrl": "https://youzidj.com/icons/pomelo-180-v4.png",
-  "description": "柚子短剧（18+）AI 短剧视频源：搜索、选集与直连播放，访客账户与一次性播放凭证由规则自动处理。",
+  "description": "柚子短剧（18+）AI 短剧视频源：搜索、选集与直连播放；媒体请求需同时携带访客账户（eden_account）与播放凭证（eden_play_*）cookie，由规则自动附带。",
   "headers": {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
     "Accept-Language": "zh-CN,zh;q=0.9"
@@ -94,7 +94,7 @@
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
       },
       "cookiePrefixes": [
-        "eden_play_"
+        "eden_"
       ]
     }
   ]
