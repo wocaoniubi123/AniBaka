@@ -30,6 +30,7 @@ class BundledRuleStore {
     'tvtfun': 'assets/rules/tvtfun.json',
     'moonci': 'assets/rules/moonci.json',
     'silisili': 'assets/rules/silisili.json',
+    'youzidj': 'assets/rules/youzidj.json',
   };
 
   /// Generated together with the rule files by tool/sync_bundled_rules.dart.

@@ -94,9 +94,13 @@ class HtmlParser {
 
     final src =
         img?.attributes['data-original'] ??
+        img?.attributes['data-image-src'] ??
         img?.attributes['data-src'] ??
         img?.attributes['src'] ??
         element.querySelector('[data-original]')?.attributes['data-original'] ??
+        element
+            .querySelector('[data-image-src]')
+            ?.attributes['data-image-src'] ??
         element.querySelector('[data-src]')?.attributes['data-src'] ??
         element.attributes['data-original'] ??
         element.attributes['data-src'] ??

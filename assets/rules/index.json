@@ -228,6 +228,22 @@
       "ref": "xifanacg.json",
       "engine": "anx-rule/2",
       "sha256": "f76a60584be99c2e11d369a1155c5e7f02607e62d143e705bb3ee521f8a81964"
+    },
+    {
+      "key": "youzidj",
+      "title": "柚子短剧",
+      "by": "wocaoniubi123",
+      "rev": 1,
+      "intro": "柚子短剧（18+）AI 短剧视频源：搜索、选集与直连播放，访客账户与一次性播放凭证由规则自动处理。",
+      "site": "https://youzidj.com/",
+      "badge": "https://youzidj.com/icons/pomelo-180-v4.png",
+      "labels": [
+        "短剧",
+        "18+"
+      ],
+      "ref": "youzidj.json",
+      "engine": "anx-rule/2",
+      "sha256": "0568e5c8da6070f83513952999662e70d4b5aee496e4e2c0d7c5072e0bd62409"
     }
   ]
 }

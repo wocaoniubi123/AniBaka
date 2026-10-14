@@ -1337,6 +1337,9 @@ class PipelineInterpreter {
   /// `headers`：可选的静态头，会与动态头合并（动态头优先）。
   /// `remove`：要从媒体请求头里去掉的字段（如第三方 CDN 不接受站点 Referer）；
   /// 记为空白值，由适配器合并规则头后统一剔除。
+  /// `cookieNames` / `cookiePrefixes`：播放阶段写入 cookie jar 的凭证 cookie
+  /// 的名字/前缀（如 `eden_play_`），由适配器在解析媒体请求头时按名从
+  /// cookie jar 中筛选并附加为 Cookie 头（对应播放凭证类源）。
   void _opSetMediaHeaders(PipelineStep step, _PipelineContext ctx) {
     final staticHeaders = _renderMap(step.params['headers'], ctx);
     Map<String, String>? updated = staticHeaders.isEmpty ? null : staticHeaders;
@@ -1360,6 +1363,12 @@ class PipelineInterpreter {
       }
     }
     if (updated != null) ctx.mediaHeaders = updated;
+    final cookieNames = step.strList('cookieNames');
+    final cookiePrefixes = step.strList('cookiePrefixes');
+    if (cookieNames.isNotEmpty || cookiePrefixes.isNotEmpty) {
+      ctx.cookieNames = cookieNames;
+      ctx.cookiePrefixes = cookiePrefixes;
+    }
   }
 
   /// `playerAaaa`：提取 MacCMS `player_aaaa` 变量 JSON 中的 url 键。

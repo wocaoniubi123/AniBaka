@@ -1,0 +1,101 @@
+{
+  "format": "anx-rule/2",
+  "id": "youzidj",
+  "name": "柚子短剧",
+  "baseUrl": "https://youzidj.com",
+  "iconUrl": "https://youzidj.com/icons/pomelo-180-v4.png",
+  "description": "柚子短剧（18+）AI 短剧视频源：搜索、选集与直连播放，访客账户与一次性播放凭证由规则自动处理。",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+    "Accept-Language": "zh-CN,zh;q=0.9"
+  },
+  "search": [
+    {
+      "op": "fetch",
+      "url": "{baseUrl:raw}/search/?q={keyword}"
+    },
+    {
+      "op": "searchList",
+      "selectors": [
+        "article.drama-card"
+      ],
+      "detailPattern": "/dramas/"
+    }
+  ],
+  "detail": [
+    {
+      "op": "regex",
+      "pattern": "^(https?://[^/]+/dramas/[a-z0-9-]+)",
+      "group": 1
+    },
+    {
+      "op": "template",
+      "value": "{url:raw}/"
+    },
+    {
+      "op": "fetch"
+    },
+    {
+      "op": "episodes",
+      "listSelectors": [
+        "div[data-season-panel]"
+      ],
+      "tabSelectors": [
+        "button.series-range-tab"
+      ]
+    }
+  ],
+  "play": [
+    {
+      "op": "fetch",
+      "url": "{episodeId:raw}"
+    },
+    {
+      "op": "regex",
+      "pattern": "id=\"player\"[\\s\\S]{0,400}?data-video=\"([^\"]+)\"",
+      "group": 1
+    },
+    {
+      "op": "setVar",
+      "name": "video",
+      "value": "{url:raw}"
+    },
+    {
+      "op": "fetch",
+      "url": "{baseUrl:raw}/api/account/bootstrap",
+      "method": "POST",
+      "headers": {
+        "Origin": "https://youzidj.com",
+        "Content-Type": "application/json"
+      },
+      "body": "{}",
+      "contentType": "application/json",
+      "cookieSession": true
+    },
+    {
+      "op": "fetch",
+      "url": "{baseUrl:raw}/api/playback/{video:raw}?mode=native&startup=1",
+      "method": "POST",
+      "headers": {
+        "Origin": "https://youzidj.com",
+        "Content-Type": "application/json"
+      },
+      "body": "{}",
+      "contentType": "application/json"
+    },
+    {
+      "op": "json",
+      "path": "url"
+    },
+    {
+      "op": "setMediaHeaders",
+      "headers": {
+        "Referer": "https://youzidj.com/",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+      },
+      "cookiePrefixes": [
+        "eden_play_"
+      ]
+    }
+  ]
+}

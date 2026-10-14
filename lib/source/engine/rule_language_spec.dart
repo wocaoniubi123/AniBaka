@@ -32,7 +32,7 @@ class RuleLanguageSpec {
     'maccmsApiEpisodes': 'Build episode lines from a MacCMS provide API.',
     'videoUrl': 'Extract a playable URL from current content.',
     'setMediaHeaders':
-        'Attach HTTP headers to the resolved media (headers, jsonPath, remove).',
+        'Attach HTTP headers to the resolved media (headers, jsonPath, remove, cookieNames, cookiePrefixes).',
     'playerAaaa': 'Parse the common player_aaaa bootstrap object.',
     'playerDecrypt': 'Decrypt the supported player payload.',
     'sniff': 'Use WebView to follow a page and sniff playable media.',
