@@ -2,8 +2,8 @@
 set -euo pipefail
 
 if [ -z "${RELEASE_GPG_PRIVATE_KEY_BASE64:-}" ]; then
-  echo "::error::RELEASE_GPG_PRIVATE_KEY_BASE64 secret is required."
-  exit 1
+  echo "::warning::RELEASE_GPG_PRIVATE_KEY_BASE64 secret is not configured; skipping GPG signing so the release can still be published."
+  exit 0
 fi
 
 export GNUPGHOME="$RUNNER_TEMP/anibaka-gnupg"
